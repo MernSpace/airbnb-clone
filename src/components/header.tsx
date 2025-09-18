@@ -85,38 +85,62 @@ export default function Header({ onSearch }: HeaderProps) {
                     <div className="hidden md:flex items-center space-x-8">
                         <button
                             onClick={() => setActiveTab('homes')}
-                            className={`flex items-center space-x-2 px-4 py-3 rounded-full text-sm font-medium transition-colors relative ${activeTab === 'homes'
-                                    ? 'text-gray-900'
-                                    : 'text-gray-500 hover:text-gray-700'
+                            className={`relative flex flex-col items-center px-4 py-2 transition-colors ${activeTab === 'homes'
+                                ? 'text-gray-900'
+                                : 'text-gray-500 hover:text-gray-700'
                                 }`}
                         >
-                            <div className="w-5 h-5 bg-gray-400 rounded"></div>
-                            <span>Homes</span>
+                            {/* Icon + Label */}
+                            <div className="flex items-center">
+                                <video
+                                    src="https://a0.muscache.com/videos/search-bar-icons/webm/house-selected.webm"
+                                    className="w-16 h-16"
+                                    autoPlay
+                                    muted
+                                    playsInline
+                                />
+                                <span className="text-sm  font-bold">Homes</span>
+                            </div>
+
+                            {/* Active underline */}
                             {activeTab === 'homes' && (
-                                <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-6 h-0.5 bg-gray-900 rounded-full"></div>
+                                <div className=" w-full h-0.5 bg-gray-900 rounded-full"></div>
                             )}
                         </button>
 
                         <button
                             onClick={() => setActiveTab('experiences')}
-                            className={`flex items-center space-x-2 px-4 py-3 rounded-full text-sm font-medium transition-colors relative ${activeTab === 'experiences'
-                                    ? 'text-gray-900'
-                                    : 'text-gray-500 hover:text-gray-700'
+                            className={`relative flex flex-col items-center px-4 py-2 transition-colors ${activeTab === 'experiences'
+                                ? 'text-gray-900'
+                                : 'text-gray-500 hover:text-gray-700'
                                 }`}
                         >
-                            <div className="w-5 h-5 bg-rose-400 rounded-full"></div>
-                            <span>Experiences</span>
-                            <span className="bg-rose-500 text-white text-xs px-1.5 py-0.5 rounded-full font-semibold">NEW</span>
+                            {/* Icon + Label */}
+                            <div className="flex items-center space-x-1">
+
+                                <video
+                                    src="https://a0.muscache.com/videos/search-bar-icons/webm/balloon-selected.webm"
+                                    className="w-16 h-16 transition-transform duration-200 hover:scale-110 "
+                                    autoPlay
+                                    muted
+                                    playsInline
+                                />
+                                <span className="bg-rose-500 text-white text-xs px-1.5 py-1.5 rounded-full font-semibold">NEW</span>
+                                <span className="text-sm text-black font-bold">Experiences</span>
+
+                            </div>
+
+                            {/* Active underline */}
                             {activeTab === 'experiences' && (
-                                <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-6 h-0.5 bg-gray-900 rounded-full"></div>
+                                <div className=" w-full h-0.5 bg-gray-900 rounded-full"></div>
                             )}
                         </button>
 
                         <button
                             onClick={() => setActiveTab('services')}
                             className={`flex items-center space-x-2 px-4 py-3 rounded-full text-sm font-medium transition-colors relative ${activeTab === 'services'
-                                    ? 'text-gray-900'
-                                    : 'text-gray-500 hover:text-gray-700'
+                                ? 'text-gray-900'
+                                : 'text-gray-500 hover:text-gray-700'
                                 }`}
                         >
                             <div className="w-5 h-5 bg-gray-600 rounded-full"></div>
@@ -151,10 +175,10 @@ export default function Header({ onSearch }: HeaderProps) {
                 <div className="max-w-2xl mx-auto relative">
                     <div className="bg-white rounded-full shadow-lg border border-gray-200 p-2 flex items-center">
                         {/* Where */}
-                        <div className="flex-1 px-6 py-3 cursor-pointer hover:bg-gray-50 rounded-full transition-colors">
+                        <div
                             className={`flex-1 px-6 py-3 cursor-pointer rounded-full transition-colors ${showLocationDropdown ? 'bg-white shadow-md' : 'hover:bg-gray-50'
                                 }`}
-                            onClick={() => setShowLocationDropdown(!showLocationDropdown)}
+                            onClick={() => setShowLocationDropdown(!showLocationDropdown)}>
                             <input
                                 type="text"
                                 placeholder={filters.location || "Search destinations"}
