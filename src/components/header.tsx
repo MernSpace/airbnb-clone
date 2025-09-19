@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Search, Globe, Menu, User, MapPin, Building, Plane } from 'lucide-react';
+import { HeaderRight } from './header/header-right';
 
 interface HeaderProps {
     onSearch?: (filters: SearchFilters) => void;
@@ -74,7 +75,7 @@ export default function Header({ onSearch }: HeaderProps) {
     return (
         <header className="bg-white border-b border-gray-200 sticky top-0 z-50">
             {/* Top navigation */}
-            <div className="px-6 py-4">
+            <div className="px-6 py-2">
                 <div className="flex items-center justify-between">
                     {/* Logo */}
                     <div className="flex items-center">
@@ -82,10 +83,10 @@ export default function Header({ onSearch }: HeaderProps) {
                     </div>
 
                     {/* Center navigation tabs */}
-                    <div className="hidden md:flex items-center space-x-8">
+                    <div className="hidden md:flex items-center py-2 px-2">
                         <button
                             onClick={() => setActiveTab('homes')}
-                            className={`relative flex flex-col items-center px-4 py-2 transition-colors ${activeTab === 'homes'
+                            className={`relative flex flex-col items-center transition-colors ${activeTab === 'homes'
                                 ? 'text-gray-900'
                                 : 'text-gray-500 hover:text-gray-700'
                                 }`}
@@ -99,74 +100,83 @@ export default function Header({ onSearch }: HeaderProps) {
                                     muted
                                     playsInline
                                 />
-                                <span className="text-sm  font-bold">Homes</span>
+                                <span className="text-sm font-semibold">Homes</span>
                             </div>
 
-                            {/* Active underline */}
-                            {activeTab === 'homes' && (
-                                <div className=" w-full h-0.5 bg-gray-900 rounded-full"></div>
-                            )}
+                            {/* Active underline with slide animation */}
+                            <div
+                                className={`absolute bottom-0 h-1 bg-gray-900 rounded-full transition-all duration-300 ease-in-out ${activeTab === 'homes' ? 'w-full transform translate-x-0' : 'w-0 transform -translate-x-full'
+                                    }`}
+                            />
                         </button>
 
                         <button
                             onClick={() => setActiveTab('experiences')}
-                            className={`relative flex flex-col items-center px-4 py-2 transition-colors ${activeTab === 'experiences'
+                            className={`relative flex flex-col items-center transition-colors ${activeTab === 'experiences'
                                 ? 'text-gray-900'
                                 : 'text-gray-500 hover:text-gray-700'
                                 }`}
                         >
-                            {/* Icon + Label */}
+                            {/* Icon + Label with badge positioned on video */}
                             <div className="flex items-center space-x-1">
-
-                                <video
-                                    src="https://a0.muscache.com/videos/search-bar-icons/webm/balloon-selected.webm"
-                                    className="w-16 h-16 transition-transform duration-200 hover:scale-110 "
-                                    autoPlay
-                                    muted
-                                    playsInline
-                                />
-                                <span className="bg-rose-500 text-white text-xs px-1.5 py-1.5 rounded-full font-semibold">NEW</span>
-                                <span className="text-sm text-black font-bold">Experiences</span>
-
+                                <div className="relative">
+                                    <video
+                                        src="https://a0.muscache.com/videos/search-bar-icons/webm/balloon-selected.webm"
+                                        className="w-16 h-16 transition-transform duration-200 hover:scale-110"
+                                        autoPlay
+                                        muted
+                                        playsInline
+                                    />
+                                    {/* Badge positioned on top-right of video */}
+                                    <span className="absolute -top-1 -right-5 bg-rose-500 text-white text-xs px-1.5 py-1 font-semibold rounded-full rounded-bl-none ">
+                                        NEW
+                                    </span>
+                                </div>
+                                <span className="text-sm font-semibold">Experiences</span>
                             </div>
 
-                            {/* Active underline */}
-                            {activeTab === 'experiences' && (
-                                <div className=" w-full h-0.5 bg-gray-900 rounded-full"></div>
-                            )}
+                            {/* Active underline with animation */}
+                            <div
+                                className={`absolute bottom-0 h-1 bg-gray-900 rounded-full transition-all duration-300 ease-in-out ${activeTab === 'experiences' ? 'w-full opacity-100' : 'w-0 opacity-0'
+                                    }`}
+                            />
                         </button>
 
                         <button
                             onClick={() => setActiveTab('services')}
-                            className={`flex items-center space-x-2 px-4 py-3 rounded-full text-sm font-medium transition-colors relative ${activeTab === 'services'
+                            className={`relative flex flex-col items-center transition-colors ${activeTab === 'services'
                                 ? 'text-gray-900'
                                 : 'text-gray-500 hover:text-gray-700'
                                 }`}
                         >
-                            <div className="w-5 h-5 bg-gray-600 rounded-full"></div>
-                            <span>Services</span>
-                            <span className="bg-rose-500 text-white text-xs px-1.5 py-0.5 rounded-full font-semibold">NEW</span>
-                            {activeTab === 'services' && (
-                                <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-6 h-0.5 bg-gray-900 rounded-full"></div>
-                            )}
+                            {/* Icon + Label with badge positioned on video */}
+                            <div className="flex items-center space-x-1">
+                                <div className="relative">
+                                    <video
+                                        src="https://a0.muscache.com/videos/search-bar-icons/webm/consierge-twirl.webm"
+                                        className="w-16 h-16 transition-transform duration-200 hover:scale-110"
+                                        autoPlay
+                                        muted
+                                        playsInline
+                                    />
+                                    {/* Badge positioned on top-right of video */}
+                                    <span className="absolute -top-1 -right-5 bg-rose-500 text-white text-xs px-1.5 py-1 font-semibold rounded-full rounded-bl-none ">
+                                        NEW
+                                    </span>
+                                </div>
+                                <span className="text-sm font-semibold">Services</span>
+                            </div>
+
+                            {/* Active underline with animation */}
+                            <div
+                                className={`absolute bottom-0 h-1 bg-gray-900 rounded-full transition-all duration-300 ease-in-out ${activeTab === 'services' ? 'w-full opacity-100' : 'w-0 opacity-0'
+                                    }`}
+                            />
                         </button>
                     </div>
 
                     {/* Right side */}
-                    <div className="flex items-center space-x-4">
-                        <button className="text-sm font-medium text-gray-700 hover:text-gray-900 px-3 py-2 rounded-full hover:bg-gray-100 transition-colors">
-                            Become a host
-                        </button>
-                        <button className="p-2 hover:bg-gray-100 rounded-full transition-colors">
-                            <Globe size={18} className="text-gray-700" />
-                        </button>
-                        <div className="flex items-center space-x-2 border border-gray-300 rounded-full px-2 py-1 hover:shadow-md transition-shadow cursor-pointer">
-                            <Menu size={16} className="text-gray-700" />
-                            <div className="w-8 h-8 bg-gray-500 rounded-full flex items-center justify-center">
-                                <User size={16} className="text-white" />
-                            </div>
-                        </div>
-                    </div>
+                    <HeaderRight />
                 </div>
             </div>
 
